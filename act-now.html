@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Act now: email the City Council — Protect South Portland</title>
+<meta name="description" content="Email the City Council before its Dec. 1 workshop and ask it to require better technology at the tank farms and to make public what special counsel advises about the city's authority. Report an odor, write to your city councilors and state legislators, and write a letter to the editor.">
+<link rel="icon" type="image/png" href="assets/psp-favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="logo-link" href="index.html">
+      <img src="assets/psp-logo.png" alt="Protect South Portland">
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-toggle-label" for="nav-toggle" aria-label="Toggle navigation">MENU</label>
+    <nav class="main-nav" aria-label="Main">
+      <!-- Header items, in order: Home, Our work, About, Share your story,
+           Contact, then the Act now pill. Home returned here after the
+           2026-11-23 header pass dropped it on the reasoning that the seal
+           already links home; Newsletter left the header for the signup on
+           its own page, which the footer still links. -->
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-sub">
+          <a href="our-campaigns.html" aria-haspopup="true" aria-expanded="false">Our work</a>
+          <ul class="submenu">
+            <li><a href="tank-farms.html">South Portland Tank Farms</a></li>
+            <li><a href="coastal-flooding.html">Coastal Flooding</a></li>
+            <li class="has-sub has-flyout">
+              <a href="past-work.html" aria-haspopup="true" aria-expanded="false">Past work</a>
+              <ul class="submenu flyout">
+                <li><a href="past-work.html">All past work</a></li>
+                <li><a href="yard-south-proposal.html">Yard South Proposal</a></li>
+                <li><a href="clear-skies.html">Clear Skies</a></li>
+                <li><a href="fertilizer-ban.html">Fertilizer Ban</a></li>
+                <li><a href="pesticides.html">Pesticides</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="share-your-story.html">Share your story</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-cta"><a href="act-now.html" aria-current="page">Act now</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="alert-strip" id="alert-strip">
+  <p class="alert-strip__text">Next event: City Council meeting, Tuesday, Dec. 1 at 6:30 p.m., City Hall Council Chambers, 25 Cottage Road. Show up by wearing green! <a class="alert-strip__details" href="act-now.html">Details</a></p>
+  <button class="alert-strip__close" type="button" aria-label="Dismiss the event banner; it comes back tomorrow" hidden>&times;</button>
+</div>
+<script>
+(function () {
+  var strip = document.getElementById('alert-strip');
+  if (!strip) return;
+  var KEY = 'psp-event-banner-day';
+  var close = strip.querySelector('.alert-strip__close');
+  if (close) close.hidden = false;
+  var today = new Date().toDateString();
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) { stored = null; }
+  if (stored === today) { strip.hidden = true; return; }
+  if (close) close.addEventListener('click', function () {
+    try { localStorage.setItem(KEY, new Date().toDateString()); } catch (e) { /* storage refused: the banner returns on the next visit, nothing is stored */ }
+    strip.hidden = true;
+  });
+})();
+</script>
+<script src="assets/js/staging-bar.js" defer></script>
+<main id="content">
+<section class="section page-head">
+  <div class="wrap">
+    <span class="kicker">Take action</span>
+    <h1>Email the City Council to stop tank farms from dumping hazardous pollutants</h1>
+    <div class="hero-band" style="background-image:url('assets/photos/waterfront.jpg');background-position:center 62%" role="img" aria-label="Morning view across Casco Bay toward the South Portland waterfront"></div>
+    <p class="lede">We know more than ever about how the tank farms are affecting this community. Join us in urging the council to take the strongest action possible.</p>
+    <div class="callout callout--ask">
+      <p style="margin:0 0 12px"><strong>Current ask:</strong> The council is weighing what to require at the tank farms, and staff and special counsel report at the City Council workshop on Tuesday, Dec. 1 at 6:30 p.m. in City Hall Council Chambers. Email the Council using the message below, or your own words.</p>
+      <div class="ask-steps">
+        <div class="ask-step">
+          <p class="lede"><strong>Email the Council</strong> and ask it to require better technology at the tank farms, and to make public what special counsel advises about the city&rsquo;s authority.</p>
+          <p><a class="btn btn--cta" href="mailto:citycouncil@southportland.gov?cc=cscott%40southportland.gov%2Crcoleman%40southportland.gov%2Cmpride%40southportland.gov%2Cjwalker%40southportland.gov%2Cetipton%40southportland.gov%2Crmatthews%40southportland.gov%2Cnwest%40southportland.gov&amp;subject=Require%20better%20technology%20at%20South%20Portland%27s%20tank%20farms&amp;body=Dear%20Councilors%2C%0A%0ANew%20state%20fence-line%20data%20from%20Maine%E2%80%99s%20petroleum%20terminals%20shows%20benzene%20above%20Maine%E2%80%99s%20ambient%20air%20guideline%20at%20ten%20of%20the%20eleven.%20Six%20of%20the%20eleven%20terminals%20are%20in%20South%20Portland%2C%20and%20all%20but%20one%20came%20in%20above%20the%20guideline.%20At%20South%20Portland%20Terminal%20on%20Lincoln%20Street%2C%20the%20long-term%20average%20ran%20as%20high%20as%20four%20and%20a%20half%20times%20the%20guideline.%0A%0AI%20ask%20you%20to%20require%20better%20technology%20at%20the%20tank%20farms%2C%20and%20to%20make%20public%20what%20special%20counsel%20advises%20about%20the%20city%E2%80%99s%20authority.%20Our%20families%20should%20not%20be%20paying%20for%20the%20oil%20companies%E2%80%99%20profits%20with%20our%20health.%0A%0ASincerely%2C%0A%5BYour%20name%20and%20street%20or%20neighborhood%5D">Email the Council</a></p>
+        </div>
+        <div class="ask-step">
+          <p class="lede"><strong>Wear green</strong> and come to the City Council meeting. The meeting is Tuesday, Dec. 1 at 6:30 p.m. in City Hall Council Chambers, 25 Cottage Road.</p>
+        </div>
+      </div>
+    </div>
+    <div class="prose">
+      <div class="card-grid card-grid--act">
+        <div class="card card--glow">
+          <div class="card__body">
+            <h2 class="h3-look">Tell your story</h2>
+            <p>We want to hear your voice. We are building an archive of our shared history and hoped-for future. Add yours before the Dec. 1 workshop.</p>
+            <a class="card__more" href="share-your-story.html">SHARE YOUR STORY →</a>
+          </div>
+        </div>
+        <div class="card card--glow">
+          <div class="card__body">
+            <h2 class="h3-look">Dec. 1: the council weighs what to require</h2>
+            <p>The council is weighing what to require at the tank farms. The workshop is Tuesday, Dec. 1 at 6:30 p.m. at City Hall, 25 Cottage Road. Arrive by 6:15 to fill the room.</p>
+            <a class="card__more" href="act-now.html">WORKSHOP DETAILS →</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__body">
+          <h2 class="h3-look">Report an odor</h2>
+          <p>Report every odor, every time. Log it in the Smell My City app, which shows results publicly in real time, and file the City&rsquo;s own odor report.</p>
+          <a class="card__more" href="report-an-odor.html">REPORT AN ODOR →</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__body">
+          <h2 class="h3-look">Donate</h2>
+          <p>Fund the fight for clean air in South Portland. Give by check through the mail, or online with PayPal.</p>
+          <a class="card__more" href="donate.html">DONATE →</a>
+          </div>
+        </div>
+      </div>
+
+      <h2>Example message</h2>
+      <blockquote>
+        <p>Dear Councilors,</p>
+        <p>New state fence-line data from Maine&rsquo;s petroleum terminals shows benzene above Maine&rsquo;s ambient air guideline at ten of the eleven. Six of the eleven terminals are in South Portland, and all but one came in above the guideline. At South Portland Terminal on Lincoln Street, the long-term average ran as high as four and a half times the guideline.</p>
+        <p>I ask you to require better technology at the tank farms, and to make public what special counsel advises about the city&rsquo;s authority. Our families should not be paying for the oil companies&rsquo; profits with our health.</p>
+        <p>Sincerely,<br>[Your name and street or neighborhood]</p>
+      </blockquote>
+
+      <h2>Write to City Councilors</h2>
+      <p>The addresses are also on <a href="https://southportland.gov/411/City-Council">southportland.gov/411/City-Council</a>.</p>
+      <p>Start with the ready-to-send message above, then send to the addresses below.</p>
+      <p>We recommend sending your email to the general email address (<a href="mailto:citycouncil@southportland.gov">citycouncil@southportland.gov</a>), as well as each councilor individually:</p>
+      <ul class="contact-list">
+        <li>Carter Scott (District 1): <a href="mailto:cscott@southportland.gov">cscott@southportland.gov</a></li>
+        <li>Rachael Coleman (District 2): <a href="mailto:rcoleman@southportland.gov">rcoleman@southportland.gov</a>. Ellen Clancy takes this seat at the Dec. 7 inauguration.</li>
+        <li>Misha Pride (District 3): <a href="mailto:mpride@southportland.gov">mpride@southportland.gov</a></li>
+        <li>Jessica Walker (District 4): <a href="mailto:jwalker@southportland.gov">jwalker@southportland.gov</a></li>
+        <li>Elyse Tipton (Mayor &mdash; District 5): <a href="mailto:etipton@southportland.gov">etipton@southportland.gov</a></li>
+        <li>Richard Matthews (At-Large): <a href="mailto:rmatthews@southportland.gov">rmatthews@southportland.gov</a></li>
+        <li>Natalie West (At-Large): <a href="mailto:nwest@southportland.gov">nwest@southportland.gov</a></li>
+      </ul>
+
+      <h2>Write to Maine state legislators</h2>
+      <p>Their email addresses are below.</p>
+      <ul class="contact-list">
+        <li>Deqa Dhalac &mdash; State House of Representatives | <a href="mailto:deqa.dhalac@legislature.maine.gov">deqa.dhalac@legislature.maine.gov</a></li>
+        <li>Chris Kessler &mdash; State House of Representatives | <a href="mailto:christopher.kessler@legislature.maine.gov">christopher.kessler@legislature.maine.gov</a></li>
+        <li>Matt Beck &mdash; State House of Representatives | <a href="mailto:matthew.beck@legislature.maine.gov">matthew.beck@legislature.maine.gov</a></li>
+        <li>Anne Carney &mdash; Maine State Senate | <a href="mailto:anne.carney@legislature.maine.gov">anne.carney@legislature.maine.gov</a></li>
+      </ul>
+
+      <h2>Writing a letter to the editor</h2>
+      <p>How to write a letter: the toolkit&rsquo;s <a href="toolkit.html#letter-to-the-editor">letter-to-the-editor guidance</a>.</p>
+      <h3>Sentry</h3>
+      <p>Email your letter to <a href="mailto:letters@metln.org">letters@metln.org</a> or use the <a href="https://www.pressherald.com/reader-services/letters-editor/">letter submission form</a>. Letters should be no longer than 350 words and must include the writer&rsquo;s name, full address, and phone number. The deadline is Monday at noon.</p>
+      <h3>Forecaster</h3>
+      <p>Email your letter to <a href="mailto:letters@metln.org">letters@metln.org</a> or use the <a href="https://www.pressherald.com/reader-services/letters-editor/">letter submission form</a>. Letters should be no longer than 300 words and must include the writer&rsquo;s name, full address, and daytime and evening phone numbers. The deadline is Monday at noon.</p>
+      <h3>Portland Press Herald</h3>
+      <p>Email your letter to <a href="mailto:letterstotheeditor@pressherald.com">letterstotheeditor@pressherald.com</a> or use the <a href="https://www.pressherald.com/reader-services/letters-editor/">letter submission form</a>, or send mail to Editor, Portland Press Herald, P.O. Box 1460, Portland, ME 04104-5009. Letters should be no longer than 300 words and include the writer&rsquo;s name, address, and daytime phone number.</p>
+
+      <h2>More ways to help</h2>
+      <p>The council&rsquo;s next workshop is <strong>Tuesday, Dec. 1 at 6:30 p.m.</strong> in City Hall Council Chambers, 25 Cottage Road. Arrive by 6:15 to fill the room. To get an email when the agenda is posted, write to <a href="mailto:protectsouthportland@gmail.com?subject=Workshop%20alerts">protectsouthportland@gmail.com</a> with &ldquo;Workshop alerts&rdquo; in the subject line.</p>
+      <p>Follow our alerts to Act now and attend City Council meetings and workshops. You show your support for our causes just by being there, and speaking up if you feel comfortable. Under the Council&rsquo;s standing rules, members of the public have up to 3 minutes to speak on any item on or off the agenda, workshop items included. The City publishes the Council&rsquo;s <a href="https://www.southportland.gov/DocumentCenter/View/1375/Council_Standing_Rules_-_FINAL_As_Amended_01-09-2024">standing rules (PDF)</a>.</p>
+      <p>We need help with small tasks such as phone calling, handouts and computer work. <a href="contact.html">Contact us</a> to volunteer.</p>
+
+      <div class="callout">
+        <p><strong>Email</strong> <a href="mailto:protectsouthportland@gmail.com">protectsouthportland@gmail.com</a> to get plugged into local tank farm efforts.</p>
+      </div>
+
+      <p>The campaign&rsquo;s toolkit gathers the tank farm timeline, the fenceline findings, the questions neighbors asked on Oct. 15, and guidance for letters to the editor: <a href="toolkit.html">read the tank farms toolkit</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="action-strip" role="note">
+  <p><a href="act-now.html">Report every odor.</a></p>
+</div>
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <img src="assets/psp-logo.png" alt="Protect South Portland logo">
+    </div>
+    <div class="footer__links">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="our-campaigns.html">Our work</a></li>
+        <li><a href="tank-farms.html">Tank farms</a></li>
+        <li><a href="toolkit.html">Tank farms toolkit</a></li>
+        <li><a href="fertilizer-ban.html">Fertilizer ban</a></li>
+        <li><a href="coastal-flooding.html">Coastal flooding</a></li>
+        <li><a href="past-work.html">Past work</a></li>
+        <li><a href="yard-south-proposal.html">Yard South proposal</a></li>
+        <li><a href="clear-skies.html">Clear Skies</a></li>
+        <li><a href="pesticides.html">Pesticides</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="act-now.html">Act now</a></li>
+        <li><a href="report-an-odor.html">Report an odor</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__donate">
+      <p>Help defend our <strong>COMMUNITY</strong>. Please donate to Protect South Portland.</p>
+      <a class="btn btn--cta" href="donate.html">Donate</a>
+    </div>
+  </div>
+  <div class="wrap footer__base">
+    <div class="social">
+      <a href="https://x.com/ProtectSoPo" rel="noopener">X</a>
+      <a href="https://www.facebook.com/protectsouthportland/" rel="noopener">Facebook</a>
+    </div>
+    <p class="credit">A special thank you goes out to Dan Woods and Karen Silverman for their photography donations.</p>
+  </div>
+</footer>
+<script>
+/* Dropdown a11y (2026-10-15), progressive enhancement only. The menus already
+   open and close in CSS (:hover and :focus-within; blur closes) with no
+   JavaScript at all; this script adds Escape-to-close (drop focus, the
+   :focus-within release closes the panel) and keeps aria-expanded truthful
+   on the two parent links, including the mobile static list where the
+   children are always visible at <=1120px. */
+(function () {
+  var nav = document.querySelector(".main-nav");
+  if (!nav) return;
+  var parents = nav.querySelectorAll(".has-sub > a");
+  var MOBILE = window.matchMedia("(max-width: 1120px)");
+  function sync() {
+    parents.forEach(function (a) {
+      var li = a.parentElement;
+      var open = MOBILE.matches || li.matches(":hover") || li.matches(":focus-within");
+      a.setAttribute("aria-expanded", String(open));
+    });
+  }
+  parents.forEach(function (a) {
+    ["focusin", "focusout", "mouseenter", "mouseleave"].forEach(function (type) {
+      a.addEventListener(type, function () { setTimeout(sync, 0); });
+    });
+  });
+  nav.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" || !e.target.closest(".has-sub")) return;
+    e.preventDefault();
+    if (document.activeElement) document.activeElement.blur();
+    sync();
+  });
+  if (typeof MOBILE.addEventListener === "function") MOBILE.addEventListener("change", sync);
+  sync();
+})();
+</script>
+
+</body>
+</html>

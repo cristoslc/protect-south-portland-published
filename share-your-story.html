@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share your story — Protect South Portland</title>
+<meta name="description" content="Leave a voice message about living near South Portland's tank farms, ahead of the Dec. 1 City Council workshop. Protect South Portland is building an archive of our shared history and hoped-for future.">
+<link rel="icon" type="image/png" href="assets/psp-favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="logo-link" href="index.html">
+      <img src="assets/psp-logo.png" alt="Protect South Portland">
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-toggle-label" for="nav-toggle" aria-label="Toggle navigation">MENU</label>
+    <nav class="main-nav" aria-label="Main">
+      <!-- Header items, in order: Home, Our work, About, Share your story,
+           Contact, then the Act now pill. Home returned here after the
+           2026-11-23 header pass dropped it on the reasoning that the seal
+           already links home; Newsletter left the header for the signup on
+           its own page, which the footer still links. -->
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-sub">
+          <a href="our-campaigns.html" aria-haspopup="true" aria-expanded="false">Our work</a>
+          <ul class="submenu">
+            <li><a href="tank-farms.html">South Portland Tank Farms</a></li>
+            <li><a href="coastal-flooding.html">Coastal Flooding</a></li>
+            <li class="has-sub has-flyout">
+              <a href="past-work.html" aria-haspopup="true" aria-expanded="false">Past work</a>
+              <ul class="submenu flyout">
+                <li><a href="past-work.html">All past work</a></li>
+                <li><a href="yard-south-proposal.html">Yard South Proposal</a></li>
+                <li><a href="clear-skies.html">Clear Skies</a></li>
+                <li><a href="fertilizer-ban.html">Fertilizer Ban</a></li>
+                <li><a href="pesticides.html">Pesticides</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="share-your-story.html" aria-current="page">Share your story</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-cta"><a href="act-now.html">Act now</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="alert-strip" id="alert-strip">
+  <p class="alert-strip__text">Next event: City Council meeting, Tuesday, Dec. 1 at 6:30 p.m., City Hall Council Chambers, 25 Cottage Road. Show up by wearing green! <a class="alert-strip__details" href="act-now.html">Details</a></p>
+  <button class="alert-strip__close" type="button" aria-label="Dismiss the event banner; it comes back tomorrow" hidden>&times;</button>
+</div>
+<script>
+(function () {
+  var strip = document.getElementById('alert-strip');
+  if (!strip) return;
+  var KEY = 'psp-event-banner-day';
+  var close = strip.querySelector('.alert-strip__close');
+  if (close) close.hidden = false;
+  var today = new Date().toDateString();
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) { stored = null; }
+  if (stored === today) { strip.hidden = true; return; }
+  if (close) close.addEventListener('click', function () {
+    try { localStorage.setItem(KEY, new Date().toDateString()); } catch (e) { /* storage refused: the banner returns on the next visit, nothing is stored */ }
+    strip.hidden = true;
+  });
+})();
+</script>
+<script src="assets/js/staging-bar.js" defer></script>
+<main id="content">
+<section class="section page-head">
+  <div class="wrap">
+    <span class="kicker">Share your story</span>
+    <h1>We want to hear your voice</h1>
+    <p class="lede">We are building an archive of our shared history and hoped-for future, and we want to share it with decision-makers and with the public.</p>
+    <div class="hero-band" style="background-image:url('assets/photos/podium.jpg');background-position:center 40%" role="img" aria-label="A community member speaking at a city meeting"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="prose">
+      <p>For the 85 years that tank farms have loomed over South Portland, we have questioned what their presence means for our safety. Thanks to community efforts to implement air quality monitoring, we now have much of the data we have long sought. We are about to turn to the next chapter.</p>
+
+      <p>On December 1, the City Council will hold a workshop to consider how to substantially reduce emissions and prevent harm to residents' health. In advance of that meeting, Protect South Portland invites you to submit a voice recording of your reflections, ideas, and joys.</p>
+
+      <h2>How to share</h2>
+      <p>Call our Google Voice number and leave us a message:</p>
+      <p><a class="btn btn--cta" href="tel:+12073702160">Call (207) 370-2160</a></p>
+
+      <p>Google Voice caps messages at three minutes. Shorter messages of one to two minutes are welcome. If you would like to share for longer, please call us more than once.</p>
+
+      <div class="callout">
+        <h2 class="h3-look" style="margin-top:0">What you agree we can do with your recording</h2>
+        <p style="margin-bottom:0">By leaving us a voicemail, you are giving Protect South Portland permission to share any part of your recording, along with your name and any address information you provide, publicly. This will allow us to compile portions of contributors' messages to tell our collective story. We will let you know, through the Protect South Portland <a href="newsletter.html">newsletter</a>, when and where they are shared.</p>
+      </div>
+
+      <h2>Please begin with</h2>
+      <ul>
+        <li>Your name, however you want to be identified</li>
+        <li>Your address or neighborhood, in whatever level of detail is comfortable to you</li>
+        <li>Any additional context you feel is important</li>
+      </ul>
+
+      <h2>Then share whatever comes to mind</h2>
+      <p>If you would like a place to start, pick whichever line below opens something up.</p>
+      <ul>
+        <li>I remember&hellip;</li>
+        <li>A fond memory I hold here is&hellip;</li>
+        <li>&hellip; matters to me because&hellip;</li>
+        <li>I first became aware or involved when&hellip;</li>
+        <li>I wish I knew&hellip;</li>
+        <li>I want others to know&hellip;</li>
+        <li>I hope&hellip;</li>
+        <li>If we are wildly successful, in whatever way that means to you, living and working in South Portland would look and feel like&hellip;</li>
+      </ul>
+
+      <h2>An optional image</h2>
+      <p>If you would like to include a photo or other visual artifact as part of your contribution, please email it, along with your name and any relevant details about your submission, to <a href="mailto:protectsouthportland@gmail.com">protectsouthportland@gmail.com</a>.</p>
+
+      <p>This collection is meant to be a snapshot in time. We plan to offer additional voice memo invitations at key points in the future, so you can share more than once.</p>
+
+      <div class="callout">
+        <p style="margin-bottom:0"><strong>Questions?</strong> Email us at <a href="mailto:protectsouthportland@gmail.com">protectsouthportland@gmail.com</a>. If you want to speak in person, the Dec. 1 workshop is the next chance: the date and details are on <a href="act-now.html">Act now</a>.</p>
+      </div>
+
+      <p><a class="btn btn--cta" href="act-now.html">Act now</a> &nbsp; <a class="btn btn--ghost" href="tank-farms.html">South Portland Tank Farms</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="action-strip" role="note">
+  <p><a href="act-now.html">Report every odor.</a></p>
+</div>
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <img src="assets/psp-logo.png" alt="Protect South Portland logo">
+    </div>
+    <div class="footer__links">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="our-campaigns.html">Our work</a></li>
+        <li><a href="tank-farms.html">Tank farms</a></li>
+        <li><a href="toolkit.html">Tank farms toolkit</a></li>
+        <li><a href="fertilizer-ban.html">Fertilizer ban</a></li>
+        <li><a href="coastal-flooding.html">Coastal flooding</a></li>
+        <li><a href="past-work.html">Past work</a></li>
+        <li><a href="yard-south-proposal.html">Yard South proposal</a></li>
+        <li><a href="clear-skies.html">Clear Skies</a></li>
+        <li><a href="pesticides.html">Pesticides</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="act-now.html">Act now</a></li>
+        <li><a href="report-an-odor.html">Report an odor</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__donate">
+      <p>Help defend our <strong>COMMUNITY</strong>. Please donate to Protect South Portland.</p>
+      <a class="btn btn--cta" href="donate.html">Donate</a>
+    </div>
+  </div>
+  <div class="wrap footer__base">
+    <div class="social">
+      <a href="https://x.com/ProtectSoPo" rel="noopener">X</a>
+      <a href="https://www.facebook.com/protectsouthportland/" rel="noopener">Facebook</a>
+    </div>
+    <p class="credit">A special thank you goes out to Dan Woods and Karen Silverman for their photography donations.</p>
+  </div>
+</footer>
+<script>
+/* Dropdown a11y (2026-10-15), progressive enhancement only. The menus already
+   open and close in CSS (:hover and :focus-within; blur closes) with no
+   JavaScript at all; this script adds Escape-to-close (drop focus, the
+   :focus-within release closes the panel) and keeps aria-expanded truthful
+   on the two parent links, including the mobile static list where the
+   children are always visible at <=1120px. */
+(function () {
+  var nav = document.querySelector(".main-nav");
+  if (!nav) return;
+  var parents = nav.querySelectorAll(".has-sub > a");
+  var MOBILE = window.matchMedia("(max-width: 1120px)");
+  function sync() {
+    parents.forEach(function (a) {
+      var li = a.parentElement;
+      var open = MOBILE.matches || li.matches(":hover") || li.matches(":focus-within");
+      a.setAttribute("aria-expanded", String(open));
+    });
+  }
+  parents.forEach(function (a) {
+    ["focusin", "focusout", "mouseenter", "mouseleave"].forEach(function (type) {
+      a.addEventListener(type, function () { setTimeout(sync, 0); });
+    });
+  });
+  nav.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" || !e.target.closest(".has-sub")) return;
+    e.preventDefault();
+    if (document.activeElement) document.activeElement.blur();
+    sync();
+  });
+  if (typeof MOBILE.addEventListener === "function") MOBILE.addEventListener("change", sync);
+  sync();
+})();
+</script>
+
+</body>
+</html>

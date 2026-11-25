@@ -1,0 +1,1155 @@
+/* Protect South Portland — static site styles.
+   Palette mirrors the live site's Wix theme: dark-teal masthead family with an
+   orange call-to-action accent. Plain CSS, mobile-first. */
+
+:root {
+  --teal-950: #122a2c;
+  --teal-900: #1d3e40;
+  --teal-700: #2c6e70;
+  --teal-600: #3a7c80;
+  --teal-100: #e4f1f1;
+  --cyan-soft: #d5f6f6;
+  --orange: #de5021;
+  --orange-dark: #b8401a;
+  --orange-darker: #9c3615;
+  --ink: #26383a;
+  --muted: #5c6b6d;
+  --line: #dde8e8;
+  --paper: #ffffff;
+  --mist: #f6fafa;
+  --shadow: 0 2px 10px rgba(29, 62, 64, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+/* Older-visitor readability (2026-10-15): the root carries the type scale as
+   a percentage of the visitor's own browser font setting — 112.5% of it is
+   18px at browser defaults, and a visitor who enlarged their default keeps
+   their larger base. Body reading copy rides the root at exactly 1rem
+   (18px), and every rem-based secondary size on the site scales together
+   (see the masthead boundary note below). */
+
+html { scroll-behavior: smooth; font-size: 112.5%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Avenir Next", Avenir, "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+img { max-width: 100%; height: auto; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- masthead + navigation ---------- */
+
+.masthead {
+  background: var(--teal-900);
+  border-bottom: 4px solid var(--orange);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* the seal is the single brand carrier (2026-10-15 de-dupe: the text
+   wordmark came off the masthead; its role as the accessible brand name
+   moved to the seal's alt) */
+
+.logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+.logo-link img { width: 96px; display: block; }
+
+.nav-toggle { display: none; }
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  font-weight: 800;
+  color: #fff;
+  user-select: none;
+}
+
+.main-nav > ul { list-style: none; display: flex; gap: 2px; margin: 0; padding: 0; align-items: center; }
+
+.main-nav li { position: relative; }
+
+.main-nav a {
+  display: block;
+  color: #e6f1f1;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* Act now is the only pill in the header: filled, far right, and never
+   confusable with the page you are already on. The fill is --orange-dark so
+   the white 16.2px/800 label clears AA at 5.55:1 (white on --orange was
+   3.98:1); the hover steps darker still (white on --orange-darker, 7.11:1). */
+.main-nav .nav-cta > a { background: var(--orange-dark); color: #fff; font-weight: 800;
+  padding: 0.4rem 0.95rem; border-radius: 999px; }
+.main-nav .nav-cta > a:hover { background: var(--orange-darker); color: #fff; }
+.main-nav .nav-cta > a[aria-current="page"] { box-shadow: none; outline: 2px solid #fff; outline-offset: 2px; }
+.main-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 currentColor; }
+
+.main-nav a:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+
+.main-nav .has-sub > a::after { content: " ▾"; font-size: 0.75rem; color: var(--teal-600); }
+
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: none;
+  min-width: 250px;
+  z-index: 60;
+}
+
+/* dropdown links sit on a white panel; the masthead's pale ink fails there,
+   so the menu text contrast fix gives the panel its own dark ink
+   (2026-10-14). */
+
+.submenu a { padding: 8px 12px; font-size: 0.9rem; color: var(--teal-900); }
+
+.main-nav .has-sub:hover > .submenu,
+.main-nav .has-sub:focus-within > .submenu { display: block; }
+
+/* same defect class on the white panel: the shared hover turns the link
+   white, so give submenu links their own hover */
+
+.main-nav .submenu a:hover { background: var(--teal-100); color: var(--teal-900); }
+
+/* One "Our work" item (2026-10-15); the Past work flyout expands
+   IN-PANEL (no right-edge clipping at narrow desktop widths), reusing the
+   mobile submenu's indented visual language. It opens on hover or
+   focus-within exactly like the top panel; the @media block below already
+   renders it as a static nested list on mobile. */
+
+.main-nav .has-flyout > .submenu {
+  position: static;
+  box-shadow: none;
+  border: none;
+  border-left: 3px solid var(--teal-100);
+  border-radius: 0;
+  margin: 6px 0 2px 6px;
+  padding: 2px 0 2px 8px;
+  min-width: 0;
+}
+
+/* Masthead boundary (2026-10-15 readability re-measure): the older-visitor
+   root scale (112.5%) enlarges every rem-based nav size by 12.5%; at 0.95rem
+   that grew the single-row desktop nav to 1072px of need against the 1060px
+   content cap (1100px border-box inner minus 40px padding) and squeezed the
+   seal image (the only shrinkable element) to 84px — violating the "row
+   never squeezed" lockup. Nav links settle at 0.9rem (16.2px, still larger
+   than the pre-bump 15.2px) with link gaps halved to 2px: nav row 909px
+   measured via the unshrunken flex read at 1440, content = seal 96px +
+   16px gap + 909 = 1021. Boundary: 1021 + 40px masthead padding = 1061
+   (overlay scrollbars), + ~16px classic-scrollbar tax = 1077, + 30px
+   variance margin = 1107, rounded up to 1120.
+   At or below 1120 the clean MENU pattern owns the band; above it the
+   seal + single-row nav compose with the row never squeezed. */
+
+@media (max-width: 1120px) {
+  .nav-toggle-label { display: block; }
+
+  /* The toggle checkbox is visually hidden but keyboard-focusable:
+     Space on it opens the menu, and the :focus-visible outline lands on
+     the MENU label. Desktop keeps it display:none, where the plain nav
+     links are already in the tab order and a focusable invisible
+     checkbox would be an unindicated tab stop. */
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .nav-toggle:focus-visible + .nav-toggle-label {
+    outline: 3px solid var(--cyan-soft);
+    outline-offset: 2px;
+  }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .nav-toggle:checked ~ .main-nav { display: block; }
+  .main-nav > ul { flex-direction: column; align-items: stretch; padding: 10px 16px 18px; gap: 2px; }
+  .submenu {
+    position: static;
+    display: block;
+    box-shadow: none;
+    border: none;
+    border-left: 3px solid var(--teal-100);
+    border-radius: 0;
+    padding: 2px 0 2px 8px;
+    margin: 2px 0 6px;
+  }
+
+  /* The phone menu panel is white, so the menu links take dark ink. The
+     Act now pill keeps the white label on the --orange-dark fill from its
+     base rule, so it gets no text-color or hover override here: a
+     dark-orange label on the orange fill measured 1.39:1 (header
+     contrast fix, 2026-11-23). */
+
+  .main-nav a { color: var(--teal-900); }
+  .main-nav a:hover { background: var(--teal-100); color: var(--teal-900); }
+}
+
+/* ---------- homepage photo hero (very top of index.html) ----------------
+
+   ONE REGION, TWO LAYERS, replacing the two blocks this used to be. Until
+   2026-11-24 the reader met a solid --teal-900 banner carrying the h1 and the
+   ask, and then, separately, a 260px decorative strip whose Bug Light
+   photograph lived as a CSS background on an empty role="img" div. The
+   operator's complaint was one defect seen twice: "This photo of bug light is
+   still too squashed. what about filling the red outline with the photo and
+   using a floating card over the photo (with or without transparency, you
+   decide) for the text where the semi-opaque red rectangle is?"
+
+   So the photograph is now a real <img> with alt text, covering the whole
+   region, and the copy floats over it in a card. object-fit: cover is what
+   makes the proportions hold at every width: the old band pinned its height
+   at 260px over a 1600x898 frame, so a 1440 viewport showed a 5.5:1 letterbox
+   slice of the middle of the scene. Here the region's height comes from the
+   card plus a fixed slice of photograph above it, and cover scales the image
+   until both dimensions are filled, never stretching it.
+
+   NO .card INHERITANCE. The overlay is a hero card, not a campaign card:
+   it carries no .card, no card__body and no card__more, and its own rules
+   are scoped to .hero__card so a campaign-card change never restyles the
+   hero by accident. It borrows the family's grammar only: the 14px rounding
+   of .card and .callout, real padding on all four sides, and the shadow
+   token.
+
+   SEMI-OPAQUE, DELIBERATELY. The card sits over the lawn and the crowd at
+   the bottom of the frame, which are the two bands of the photograph a
+   reader can afford to see through a tint. A solid card would put a lid on
+   the picture and turn the hero back into a text block with a photo border;
+   at 0.80 the grass, the people, the water and even the lighthouse read
+   through it as composition, while the worst single pixel behind the card
+   (a white shirt in the crowd, composited with the fill) still gives the
+   headline 7.90:1, the meta line 6.90:1 and the mission line 6.59:1, all
+   above AA. The samples and the method are in
+   tests/evidence/home-hero-2026-11-24/measurements-contrast.json. */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--teal-950);
+  color: #fff;
+}
+
+/* the photograph, full-bleed and proportion-true. object-position names the
+   focal point instead of guessing, and the two values do different jobs:
+   horizontally the crop leans left of centre (the tower sits at 23% across,
+   and a phone shows only 465 of the frame's 1600 columns, so a centred crop
+   would slice the lighthouse in half); vertically it anchors to the bottom
+   edge, which is what lifts the window wherever the viewport is wide enough
+   for cover to have vertical slack, putting the lantern and the schooner's
+   sail peaks in the clear band above the card. Where there is no slack
+   (every viewport narrower than about 1200px at this region's height) the
+   vertical value is a no-op and the frame is simply shown whole. The frame's
+   landmarks never pay for the crop: the highest thing in the picture is the
+   schooner's mast peaks at row 252 of 898, so the slack cap on the region
+   below stops the window at row 240, just above them, and the crop gives up
+   empty sky only — never the top of the lighthouse or the sails. */
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 20% 100%;
+}
+
+/* the region's height is the card's plus the photograph slice above it, so
+   the picture is never crushed to a strip, and the split between the two is
+   tuned per width: below about 1340px cover has no vertical slack, so the
+   clear band's height measured in source rows is band height divided by
+   cover's scale, and growing the band while trimming the card is what walks
+   the card's top edge down the photograph. The invariant the two values
+   hold is ~400 of the frame's 898 rows clear above the card at every
+   no-slack width — the evening haze, the schooner's mast peaks and the
+   lighthouse's ball, roof and lantern glass — instead of the empty sky
+   slice a shorter band leaves on a phone. 480px of clear photograph on a
+   phone with the card trimmed to match (14px gutters, a tighter card box
+   below), 360px from the tablet breakpoint up, and the card keeps its 20px
+   of photo below it and the page gutters beside it */
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 495px 14px 16px;
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+}
+
+@media (min-width: 701px) {
+  .hero__inner { padding: 360px 20px 20px; min-height: 600px; }
+}
+
+/* above 1440px cover's scale is width-driven and the vertical slack grows
+   with the viewport; left alone, a 1920 viewport put 387 source rows of
+   slack under the bottom-anchored crop and the lantern room left the frame
+   at the top. This cap holds the slack at 240 rows, just above the
+   schooner's mast peaks (row 252, the highest landmark in the frame), so
+   everything under the empty sky stays in the picture at any ultrawide
+   width: (898 - 240) / 1600 of the viewport width is the region height at
+   which cover's width-driven scale leaves exactly those 240 rows
+   uncovered. It binds from about 1830px up; below that the card plus the
+   clear band is already the taller value */
+
+@media (min-width: 1441px) {
+  .hero__inner { min-height: 41.125vw; }
+}
+
+.hero__card {
+  max-width: 46rem;
+  padding: 24px 26px 22px;
+  border-radius: 16px;
+  background: rgba(18, 42, 44, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* on a phone the card's box tightens so the clear band above it can grow
+   without growing the region past the photograph's proportions: same copy,
+   same type sizes, 14px gutters on the wrap and a smaller card padding and
+   gap, which is what drops cover's scale and lets the card's top edge sit
+   lower on the photograph */
+
+@media (max-width: 700px) {
+  .hero__card { padding: 18px 20px 16px; gap: 10px; }
+}
+
+.hero__headline {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  max-width: 46rem;
+}
+
+.hero__meta { margin: 0; font-size: 0.95rem; color: var(--cyan-soft); }
+
+.hero__ask { margin: 0; }
+
+/* mission line, still the hero's quiet sign-off under the CTA */
+
+.hero__signoff {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  max-width: 46rem;
+  padding-top: 12px;
+}
+
+.hero__mission {
+  margin: 0;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-block;
+  /* a button always keeps its own breathing room, so a wrapping paragraph
+     with zeroed margins can never squash it against the text around it */
+  margin: 0.4rem 0;
+  padding: 11px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+/* White on --orange is 3.98:1; white on --orange-dark is 5.55:1, and
+   the hover steps darker still */
+
+.btn--cta { background: var(--orange-dark); color: #fff; }
+.btn--cta:hover { background: var(--orange-darker); }
+
+.btn--ghost { background: transparent; color: var(--teal-900); border-color: var(--teal-900); }
+.btn--ghost:hover { background: var(--teal-100); }
+
+.btn--light { background: #fff; color: var(--teal-900); }
+.btn--light:hover { background: var(--teal-100); }
+
+/* ---------- the family's keyboard ring ----------------------------------
+
+   Every member of the family needs a ring a keyboard reader can see. Until
+   2026-11-24 the only one any member had lived inside the Act now button
+   pair's own page scope; when that pair came out, its scope went with it and
+   left the family with the browser default or nothing.
+
+   The shape is the site's own existing convention, not a third treatment:
+   3px solid, a 2px offset, a palette token, which is exactly what the
+   signup input wears on paper (`.signup input:focus-visible`) and what the
+   MENU toggle wears on the masthead (`.nav-toggle:focus-visible +
+   .nav-toggle-label`). Only the colour changes by surface, the way those
+   two rules already split.
+
+   Two surfaces, two tokens, both measured (WCAG 2.x relative luminance):
+   `--teal-900` is 11.57:1 on --paper, 11.00:1 on --mist, 10.00:1 on
+   --teal-100 and 10.10:1 on --cyan-soft. On the dark bands the same ink
+   reads only 1.00:1 against --teal-900 and 1.30:1 against --teal-950, so the
+   dark override swaps to `--cyan-soft`: 6.82:1 on the hero card's fill at its
+   brightest possible pixel and 13.16:1 on --teal-950 (footer). Both clear the
+   3:1 non-text floor of SC 1.4.11. No new colour enters the palette: these are
+   the two tokens the two existing focus rules already use.
+
+   The bare `.btn` rule covers the whole family, including `.btn--light`,
+   which no built page renders today but which inherits the ring rather than
+   waiting for a page to adopt it. The override is scoped to the surfaces
+   the built pages actually put a button on (`hero`, `footer`) plus
+   `section--teal`, the site's one dark band component, so a button that
+   lands there later is legible instead of dark-on-dark. `.btn--cta` keeps
+   its orange fill; the ring sits outside the fill on the band, never on it.
+
+   The `hero` member replaced `banner` on 2026-11-24, when the homepage's Act
+   now CTA moved out of the solid banner and into the hero's floating card.
+   The ring's job did not change: the card is a dark surface over a
+   photograph, so the light token is still the one that reads. */
+
+.btn:focus-visible { outline: 3px solid var(--teal-900); outline-offset: 2px; }
+
+.hero .btn:focus-visible,
+.footer .btn:focus-visible,
+.section--teal .btn:focus-visible { outline-color: var(--cyan-soft); }
+
+/* ---------- newsletter signup: the site's first form control ---------- */
+
+/* Nothing on the site was a text input before the newsletter signup, so this
+   block is new rule surface, kept to what a field needs to look native here
+   and to nothing more: the campaign's existing ink and paper tokens for the
+   border, fill and text, one radius, and a focus ring loud enough to find.
+   No new colour enters the palette. The button is the .btn family unchanged,
+   so the pill, the fill and the white label keep their measured contrast.
+   Corner choice: 8px, the site's small-control rounding (the nav links and
+   the MENU toggle carry it). The pill is the button family's own shape; an
+   input is neither, so it follows the small-control value. */
+
+.signup label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.signup__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.6rem;
+  /* the panel matches the prose column like every other callout, and the
+     controls keep a readable measure inside it */
+  max-width: 34rem;
+}
+
+.signup input {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 2px solid var(--teal-900);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.signup input:focus-visible { outline: 3px solid var(--teal-900); outline-offset: 2px; }
+
+/* the row owns this button's spacing, so the family's inline-button margin
+   comes off */
+.signup .btn { margin: 0; flex: 0 0 auto; }
+
+.signup__note { font-size: 0.95rem; color: var(--muted); margin: 0.9rem 0 0; }
+
+.signup__status { font-size: 0.95rem; color: var(--teal-900); font-weight: 700; margin: 0.5rem 0 0; }
+
+/* ---------- newsletter signup, reduced variant (2026-11-24) ----------
+
+   The component's second emphasis: the same structure with no panel of its
+   own, for the places that ask in passing rather than making the ask the
+   page's whole point. The full variant's box comes from `.callout`, which
+   the reduced root simply does not carry, so the only new rule is the
+   spacing that seats the component in the text around it. No new colour, no
+   new control styling: the label, field, button, note and status are the
+   original signup rules unchanged. */
+
+.signup--reduced { margin: 0.6rem 0 1.4rem; }
+.signup__status:empty { display: none; }
+
+/* No media query here on purpose: the field's 18rem basis plus the button is
+   wider than the panel at phone widths, so the row wraps by itself and the
+   button drops under a full-width field. The stylesheet's one max-width 719
+   block belonged to the Act now pair and left with it on 2026-11-24, so this
+   row's wrapping owes nothing to a cascade it shares. */
+
+/* ---------- generic sections ---------- */
+
+.section { padding: 46px 0; }
+
+/* compact who-we-are strip: the About paragraph sits under the hero photo,
+   demoted so only the hero reads as a hero (2026-10-14 design pass; the hero
+   became a real photo region on 2026-11-24) */
+
+.section--intro { padding: 26px 0; }
+
+/* reading copy (prose, cards, placeholder notes) inherits the body's 1rem
+   floor — 18px at default root, scales with each visitor's browser setting */
+
+.prose--intro p { color: var(--muted); }
+
+/* The strip's links read as a two-item link row after the paragraph,
+   not a run-on inside the sentence flow */
+
+.link-row { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 26px; margin: 10px 0 0; padding: 0; font-weight: 700; font-size: 0.95rem; }
+
+.link-row li { margin: 0; }
+
+/* The Act now button-pair scope from rows 82 and 88 lived here: the square
+   corners, the shared 14rem width floor, the phone stack and the focus ring
+   for the page's Donate / Report an odor pair. Row 92's card grid put the same
+   two destinations on the page, and the operator removed the pair on
+   2026-11-24 ("ah, they're there now but you didn't remove the earlier
+   buttons"), so every rule in that scope lost its only user and went with it.
+   Act now was the only page that ever carried the modifier. */
+
+.section--mist { background: var(--mist); }
+
+.section--teal { background: var(--teal-900); color: #fff; }
+.section--teal h2, .section--teal h3 { color: #fff; }
+.section--teal a { color: var(--cyan-soft); }
+
+.kicker {
+  display: block;
+  color: var(--teal-600);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+/* Heading margins are top-heavy on purpose (2026-11-24): the principle is
+   "headers should be closer to the content they belong with than to the
+   prior section" — a heading takes more air before it than after it. The
+   old values inverted that: h1 carried 6px above and 18px below, h2 carried
+   0 above and 14px below, so a heading hugged the section before it and
+   floated off its own. h1 now keeps its 18px step to the content it heads
+   and gains 22px of air above; h2 keeps the 14px step to its own content
+   and takes 44px above, which also clears the h3 family's 1.6em top margin
+   (33.7px: 1.6em of h3's computed font size, the browser's default 1.17em
+   of the 18px root, not 1em) that wins the collapse when an h3 follows an
+   h2, so the heading reads closer to the block it introduces than to the
+   section before it (act-now.html "Writing a letter to the editor" is the
+   checked case: 44px above vs 33.7px below). The h3, h2.h3-look and
+   h4.h3-look
+   rules already comply (1.6em above vs 0.5em below) and are untouched; card
+   and band headings keep their own boxed convention, where the heading
+   belongs to the sentence under it. */
+
+h1 { color: var(--teal-900); font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.2; margin: 22px 0 18px; letter-spacing: -0.01em; }
+
+h2 { color: var(--teal-900); font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.25; margin: 44px 0 14px; letter-spacing: -0.01em; }
+
+h3 { color: var(--teal-700); margin: 1.6em 0 0.5em; }
+
+/* Heading-order fix (2026-10-15): pages that held h3s directly under
+   their h1 retag them to h2 so the outline runs sequential; this class
+   carries the retired h3's exact look (size, color, margins) so no copy or
+   design changes ride along. tank-farms.html keeps its prose margins; the
+   card--photo override matches .card--photo h3. */
+
+h2.h3-look { font-size: 1em; color: var(--teal-700); margin: 1.6em 0 0.5em; }
+
+/* 2026-11-24 bold-emphasis pass: a bold line under an h3 that was acting as a
+   subhead (the HEM-3 map title on tank-farms) is an h4 in the outline, and
+   keeps the same 1em teal look the retired bold paragraph carried. */
+
+h4.h3-look { font-size: 1em; color: var(--teal-700); margin: 1.6em 0 0.5em; }
+
+.card--photo h2.h3-look { margin: 0 0 8px; }
+
+p { margin: 0 0 1em; }
+
+.lede { font-size: 1.13rem; }
+
+a { color: var(--teal-700); }
+
+a:hover { color: var(--teal-900); }
+
+.prose ul li { margin-bottom: 0.55em; }
+
+blockquote {
+  margin: 0 0 1em;
+  padding: 12px 18px;
+  border-left: 4px solid var(--teal-600);
+  background: var(--teal-100);
+  border-radius: 0 10px 10px 0;
+  color: var(--teal-900);
+}
+
+.callout {
+  background: var(--cyan-soft);
+  border-radius: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  margin: 1.2em 0;
+}
+
+.callout p:last-child { margin-bottom: 0; }
+
+/* ---------- action band (page-head demotion, 2026-11-23) ---------- */
+
+/* A callout earns emphasis by being the only tinted block in view, so the
+   tank-farms page head keeps its one callout for "Where things stand" and
+   sets the ask below it as an untinted band: a rule instead of a second
+   background, so the two never compete for the same attention. */
+
+.action-band {
+  border-top: 1px solid var(--line);
+  margin: 1.6em 0 0;
+  padding-top: 1.1em;
+}
+
+.action-band h2.h3-look { margin: 0 0 0.6em; }
+
+.action-band ul { margin-top: 0; }
+
+.action-band .btn { margin-bottom: 0; }
+
+/* ---------- tank-farms map section --------------------------------- */
+
+.map-frame {
+  max-width: 980px;
+  margin: 0 auto 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #fff;
+}
+
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  height: min(80vh, 660px);
+  border: 0;
+}
+
+@media (max-width: 700px) { .map-frame iframe { height: 460px; } }
+
+.map-note { text-align: center; color: var(--muted); font-size: 0.92rem; margin: 0 auto 26px; max-width: 60rem; }
+
+/* ---------- campaign teaser cards ---------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 { margin: 0 0 8px; }
+
+/* A text card (grid, no photo) heads with the same h2.h3-look the photo cards
+   use. The base h3-look carries prose spacing (1.6em above), which is wrong
+   geometry inside a card, so a card pins it to the card's own 8px step. Same
+   value as the photo and report cards already declare, so neither of those
+   moves; this only gives the plain text card the geometry it never had. */
+.card h2.h3-look { margin: 0 0 8px; }
+
+.card p { color: var(--muted); flex: 1; }
+
+.card .card__more { font-weight: 800; text-decoration: none; }
+
+/* ---------- odor-report dual channel (report-an-odor) -------------- */
+
+/* The two reporting mechanisms read as peer actions: one grid, side by side
+   above 720px and stacked below it. No fixed widths, so nothing overflows
+   at 412px (the base .card sizing is min-content-exempt: grid items default
+   to min-width auto, and the cells hold only wrapping text). */
+.report-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin: 0 0 1em;
+}
+
+@media (min-width: 720px) {
+  .report-actions { grid-template-columns: 1fr 1fr; }
+}
+
+/* the cards are the top of their own page, so their headings are h2 (an h1
+   followed by h3 would break the outline) and keep the h3 card look */
+.report-actions__card h2.h3-look { margin: 0 0 8px; }
+
+/* the dictated copy is primary reading text, not caption gray, and must not
+   be stretched by the base card's flex column when a sibling runs longer */
+.report-actions__card p { color: var(--ink); flex: none; }
+/* both cards are flex columns with no stretching copy, so the button
+   paragraph sinks to the card bottom and the two buttons land on one
+   baseline when the cards sit side by side */
+.report-actions__card p:last-child { margin: auto 0 0; }
+
+/* ---------- staging preview bar (2026-11-25, operator directive) ----------
+
+   User-visible meta chrome for the staging host only: the script in
+   assets/js/staging-bar.js matches the root domain
+   staging.protectsouthportland.<tld> and injects this bar above the nav;
+   production, localhost and review checkouts render nothing. Muted and
+   dashed so it is unmistakably not the campaign banner it sits above.
+   In document flow (it scrolls away; not sticky). */
+
+.staging-bar {
+  background: var(--cyan-soft);
+  border-bottom: 1px dashed var(--teal-700);
+  color: var(--ink);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  padding: 6px 16px;
+  text-align: center;
+}
+
+.staging-bar__updated { white-space: nowrap; }
+
+/* ---------- contact / council lists ---------- */
+
+.contact-list { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; }
+
+.contact-list li { break-inside: avoid; margin-bottom: 10px; }
+
+@media (max-width: 720px) { .contact-list { columns: 1; } }
+
+.contact-list a { font-weight: 600; }
+
+/* ---------- footer ---------- */
+
+.footer {
+  background: var(--teal-950);
+  color: #e6f1f1;
+  margin-top: 0;
+  padding: 40px 0 28px;
+}
+
+.footer a { color: #bfeaf4; text-decoration: none; }
+
+.footer a:hover { color: #fff; text-decoration: underline; }
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1.2fr;
+  gap: 26px;
+  align-items: start;
+}
+
+@media (max-width: 860px) { .footer__grid { grid-template-columns: 1fr; } }
+
+.footer img { width: 150px; display: block; }
+
+.footer__links ul { list-style: none; margin: 0; padding: 0; columns: 2; }
+
+.footer__links li { margin-bottom: 8px; break-inside: avoid; }
+
+.footer__donate p { color: #cfe6e6; }
+
+.footer__donate .btn { margin-top: 6px; }
+
+/* the footer's link color out-specifies .btn--cta and left the DONATE
+   button #bfeaf4-on-orange-dark (4.30:1, Lighthouse-found 2026-10-15);
+   the CTA keeps white on the orange fill (5.55:1) */
+
+.footer .btn--cta { color: #fff; }
+
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  margin-top: 26px;
+  padding-top: 18px;
+  font-size: 0.88rem;
+  color: #b7cdcd;
+}
+
+.social { display: flex; gap: 10px; }
+
+.social a {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ---------- photography (copied from the live Wix site assets) ---------- */
+
+.hero-band {
+  min-height: 320px;
+  background-position: center 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* No homepage member lives here any more. `.hero-band--low` and
+   `.hero-band--home` (and the 901px crop override that retuned it) were the
+   homepage's decorative strip; the photo hero replaced that strip with the
+   real `.hero` region above, which owns its own photograph and crop, so all
+   three went with it rather than lingering unused. The base `.hero-band`
+   below is unchanged and still serves about.html, act-now.html and
+   share-your-story.html exactly as before. */
+
+@media (max-width: 700px) { .hero-band { min-height: 190px; } }
+
+.figure { margin: 24px 0; }
+
+.figure img {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.figure figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.figure--half { max-width: 620px; }
+
+/* campaign cards with a photo head */
+
+.card--photo { padding: 0 0 4px; }
+
+.card--photo .card__img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 13px 13px 0 0;
+}
+
+.card--photo .card__body { padding: 16px 20px 12px; }
+
+.card--photo h3 { margin: 0 0 8px; }
+
+.card--photo p { color: var(--muted); flex: 1; }
+
+.card--photo .card__more { display: inline-block; padding-bottom: 12px; }
+
+/* ---------- footer action strip (ruling A, 2026-11-05) ---------- */
+
+.action-strip {
+  background: var(--cyan-soft);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.action-strip a { color: var(--orange-dark); font-weight: 800; }
+
+.action-strip a:hover { color: var(--orange); text-decoration: none; }
+
+.action-strip p {
+  margin: 0;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+/* ---------- placeholder blocks (operator decisions) ---------- */
+
+.placeholder-block {
+  border: 2px dashed var(--orange);
+  background: #fdf1ec;
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--ink);
+  margin: 1.2em 0;
+}
+
+.placeholder-block strong { color: var(--orange-dark); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; display: block; margin-bottom: 4px; }
+
+.page-head { padding: 40px 0 10px; }
+
+.section .wrap > :last-child { margin-bottom: 0; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #fff;
+  color: var(--teal-900);
+  padding: 8px 14px;
+  z-index: 100;
+}
+
+.skip-link:focus { left: 8px; }
+/* ---------- act-now action section (2026-11-24) -------------------------
+
+   Scoped to the Act now page's featured panel and its card grid; every
+   selector below names one of the classes only that page carries
+   (`.callout--ask`, `.ask-steps`, `.ask-step`, `.card-grid--act`) or its
+   glow variant (`.card--glow`), so no other page's rendering moves.
+
+   The featured block is the green panel itself (2026-11-24 swap): the
+   campaign teal field takes the site's one dark-band precedent
+   (`.section--teal`, `--teal-900` fill, white ink, 11.5:1) and the white
+   island inside it is gone. The CTA keeps its orange `.btn--cta` fill
+   because that is the site's own dark-band button convention (the hero
+   card and the footer both put `.btn--cta` on dark teal, white on
+   `--orange-dark` measured 5.55:1), so the panel carries one control in
+   the family's measured treatment instead of inventing a second. The
+   panel's call to action holds two steps of equal weight: a two-column
+   grid at 720px and above, stacked below it, both steps in the same lede
+   type; the second step's action is attendance, not a control, so it
+   carries no button — a second button with no destination would compete
+   with the email action the panel exists to serve. The ring follows the
+   family's dark-surface convention (`--cyan-soft`, 13.16:1 on `--teal-900`)
+   because the bare ring's teal-900 ink would vanish on the panel's fill.
+
+   The card grid's four cards share one white card style; the two call-to-
+   action tiles are distinguished only by a faint blue glow — a 4px halo in
+   `--cyan-soft`, the palette's own lightest blue, under the site's standard
+   shadow token. No fill, no dark teal, no new colour. The glow marks
+   prominence; it never carries focus, so the 3:1 indicator bar stays with
+   the controls inside the cards, whose rings are measured separately. The
+   larger margin under the panel is the standing gap acceptance item: the
+   space between the panel and the grid must be visibly larger than the
+   1.2em the base callout carries. */
+
+.callout--ask {
+  background: var(--teal-900);
+  border-color: var(--teal-900);
+  color: #fff;
+  margin-bottom: 2.4em;
+}
+
+.callout--ask .btn { margin-bottom: 0; }
+
+.callout--ask .btn:focus-visible { outline-color: var(--cyan-soft); }
+
+.ask-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 720px) {
+  .ask-steps { grid-template-columns: 1fr 1fr; }
+}
+
+.ask-step .lede { margin: 0; }
+
+.card-grid--act { grid-template-columns: 1fr; }
+
+@media (min-width: 720px) {
+  .card-grid--act { grid-template-columns: 1fr 1fr; }
+}
+
+.card--glow { box-shadow: 0 0 0 4px var(--cyan-soft), var(--shadow); }
+
+/* ---------- site-wide alert strip (2026-11-24) ----------
+
+   One element in the shared shell, above the masthead on every page. The
+   ask is time-sensitive (the Dec. 1 meeting), so the strip takes the
+   palette's loudest on-palette treatment: the `--orange-dark` fill with
+   white ink, the pair every dark band's call-to-action already uses,
+   measured white on `--orange-dark` at 5.55:1. Slim by construction: one
+   line of 0.92rem text, centered, sitting above a dark masthead it must
+   read against. The whole strip is one link, so its keyboard ring is the
+   site's one focus convention, 3px solid with a 2px outward offset, in
+   white at 5.55:1 on the fill; when the strip is focused at the very top
+   of the viewport the ring's top sliver sits past the edge and the rest of
+   the ring stays plainly visible. The hover darkens to `--orange-darker`,
+   the family's own hover step. No new colour. */
+
+.alert-strip {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--orange-dark);
+  color: #fff;
+  text-align: center;
+  font-size: 0.92rem;
+  padding: 8px 40px 8px 16px;
+}
+
+.alert-strip__text { margin: 0; }
+
+.alert-strip__text strong { font-weight: 700; }
+
+.alert-strip__details {
+  color: #fff;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.alert-strip__details:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* the close affordance exists only when scripting runs: the markup ships it
+   with the hidden attribute, the banner script reveals it, so the no-JS page
+   shows the banner and loses nothing. The banner's own hidden state needs the
+   same guard: the flex rule above is author-origin and would otherwise
+   override the browser's built-in [hidden] rule, so a dismissed banner would
+   keep rendering (found by the round-1 review, 2026-11-25) */
+.alert-strip[hidden] { display: none; }
+
+.alert-strip__close[hidden] { display: none; }
+
+.alert-strip__close {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.alert-strip__close:hover { background: var(--orange-darker); }
+
+.alert-strip__close:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.alert-strip:hover { background: var(--orange-darker); }
+
+.alert-strip:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* ---------- the banner's sticky surface, measured (2026-11-25) ----------
+
+   The strip is the site's one banner element, restyled and repositioned by
+   the operator's mobile-screenshot directive (2026-11-25): sticky at the
+   viewport top while the page scrolls, directly below the nav in DOM order.
+   Its surface is opaque var(--orange-dark) with white text, so the contrast
+   over whatever scrolls beneath it is the strip's own measured pair, not a
+   composite. */
+
+/* ---------- less sky on the phone (2026-11-25) ----------
+
+   The operator's mobile screenshot: "Shouldn't have so much empty room, not
+   so much sky on Mobile". The 2026-11-24 composition deliberately kept ~400
+   of the frame's 898 rows clear above the card at every width; on a phone
+   that reads as a tall empty sky. This phone-only counterpart to the
+   desktop's 41.125vw cap cuts the room the card arrives through: the top
+   padding drops from 495px to 300px, so the card starts 195px sooner and the
+   sky above the lighthouse shrinks with the band. The desktop and tablet
+   rules below are untouched, and the 41.125vw cap still binds at ultrawide
+   exactly as the composition leg sized it. */
+
+@media (max-width: 700px) {
+  .hero__inner { padding: 300px 14px 16px; }
+}
+
+/* ---------- hero card, centered on desktop (2026-11-24) ----------
+
+   The feedback board's outline (issue #4): the card reads offset,
+   bottom-left of a tall hero. Measured at 1369: the card's left gap is
+   154.5px against a right gap of 386.5px, because the card anchors to the
+   left edge of its own container while the container centers in the
+   viewport. From 1200px up the card centers on both axes: equal padding
+   above and below, `justify-content: center` for the horizontal, and
+   `align-items: center` to seat the card between the two bands when the
+   41.125vw cap makes slack at ultrawide widths (at 1920 the cap binds
+   exactly as it was sized to: region 789.6px against content of 788.9px,
+   so the remaining slack is under 1px and the card sits dead-centre in
+   it).
+
+   Why this holds the composition it moves: the composition leg's clear band
+   keeps the lighthouse's lantern clear of the card because the left-anchored
+   card sits under the tower. The centered card stands BESIDE the tower
+   instead (the card's left edge lands at (viewport - 828) / 2 ≈ 270px at
+   1369, measured against the tower's white body at x ≈ 233-266 in the leg's
+   capture, so about 5px of clear water sits between them), so the tower
+   reads in the clear at any card height, and the sails pass behind the card's
+   translucent fill — the same shape the filer drew in the outline, where
+   the sails read through the tint. Below 1200 the tablet and phone keep
+   the shipped composition: there the card is 728px of a 768px window, so
+   a centered card would sit behind the tower instead of beside it.
+
+   Nothing about the crop moves: object-fit and object-position are
+   untouched, the 41.125vw cap rule above stays whole, and the card's own
+   fill and ink are unchanged, so the measured contrasts carry. */
+
+@media (min-width: 1200px) {
+  .hero__inner { padding: 170px 20px 170px; align-items: center; justify-content: center; }
+}
